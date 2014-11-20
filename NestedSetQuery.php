@@ -49,7 +49,10 @@ class NestedSetQuery extends Behavior
 	{
 		/** @var $modelClass ActiveRecord */
 		$modelClass=$this->owner->modelClass;
-		$this->owner->andWhere($modelClass::getDb()->quoteColumnName($this->leftAttribute) . '=1');
+		$db = $modelClass::getDb();
+		$this->owner
+			->andWhere($db->quoteColumnName($this->levelAttribute) . '=1')
+			->addOrderBy($db->quoteColumnName($this->leftAttribute));
 
 		return $this->owner;
 	}

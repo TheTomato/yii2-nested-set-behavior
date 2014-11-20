@@ -38,9 +38,9 @@ class Category extends ActiveRecord
 		];
 	}
 
-	public static function createQuery()
+	public static function find()
 	{
-		return new CategoryQuery(['modelClass' => get_called_class()]);
+		return new CategoryQuery(get_called_class());
 	}
 }
 ```
@@ -74,8 +74,7 @@ matching field names in default DB schemas so you can skip configuring these.
 
 There are two ways this behavior can work: one tree per table and multiple trees
 per table. The mode is selected based on the value of `hasManyRoots` option that
-is `false` by default meaning single tree mode. In multiple trees mode you can
-set `rootAttribute` option to match existing field in the table storing the tree.
+is `false` by default meaning single tree mode. 
 
 Selecting from a tree
 ---------------------
